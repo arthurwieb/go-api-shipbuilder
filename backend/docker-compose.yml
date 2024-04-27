@@ -7,7 +7,8 @@ services:
       - "3000:3000"
     volumes:
       - .:/usr/src/app
-    mem_limit: 1g
+    mem_limit: 512m
+    container_name: shipbuilder-go
     command: air ./cmd/main.go -b 0.0.0.0
   db:
     image: postgres:alpine
@@ -19,7 +20,8 @@ services:
       - "5432:5432"
     volumes:
       - postgres-db:/var/lib/postgresql/data
-    mem_limit: 1g
+    mem_limit: 512m
+    container_name: shipbuilder_db
 
 volumes:
   postgres-db:
