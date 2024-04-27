@@ -2,9 +2,10 @@ package database
 
 import (
 	"fmt"
-	"goshipbuilder/models"
 	"log"
 	"os"
+
+	"goshipbuilder/models"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -30,15 +31,22 @@ func ConnectDb() {
 	})
 
 	if err != nil {
-		log.Fatal("Failed to connect to database! \n", err)
+		log.Fatal("Failed to connect to database. \n", err)
 		os.Exit(2)
 	}
 
-	log.Println("Connected to database")
+	log.Println("connected")
 	db.Logger = logger.Default.LogMode(logger.Info)
 
-	log.Println("Running Migrations")
+	log.Println("running migrations")
 	db.AutoMigrate(&models.Fact{})
+	db.AutoMigrate(&models.Upgrade{})
+	db.AutoMigrate(&models.UpgradeType{})
+	db.AutoMigrate(&models.ShipType{})
+	db.AutoMigrate(&models.Ship{})
+	db.AutoMigrate(&models.ShipStats{})
 
-	DB = Dbinstance{Db: db}
+	DB = Dbinstance{
+		Db: db,
+	}
 }
