@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 
+	"goshipbuilder/database/database_data"
 	"goshipbuilder/models"
 
 	"gorm.io/driver/postgres"
@@ -14,6 +15,18 @@ import (
 
 type Dbinstance struct {
 	Db *gorm.DB
+}
+
+func Seed(db *gorm.DB) {
+	isTableEmpty(db, models.UpgradeType{}, database_data.GetUpgradeTypes())
+}
+
+func isTableEmpty(db *gorm.DB, model interface{}, data interface{}) {
+	var count int64
+	db.Model(model).Count(&count)
+	if count == 0 {
+		db.Create(data)
+	}
 }
 
 var DB Dbinstance
@@ -43,8 +56,9 @@ func ConnectDb() {
 	db.AutoMigrate(&models.Upgrade{})
 	db.AutoMigrate(&models.UpgradeType{})
 	db.AutoMigrate(&models.ShipType{})
-	db.AutoMigrate(&models.Ship{})
-	db.AutoMigrate(&models.ShipStats{})
+	//db.AutoMigrate(&models.Ship{})
+	//db.AutoMigrate(&models.ShipStats{})
+	Seed(db)
 
 	DB = Dbinstance{
 		Db: db,

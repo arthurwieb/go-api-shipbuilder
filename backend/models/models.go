@@ -15,10 +15,34 @@ type UpgradeType struct {
 }
 
 type ShipType struct {
-	ID        uint `gorm:"primaryKey;autoIncrement"`
-	Name      string
-	Ships     []Ship      `gorm:"foreignKey:TypeID"`
-	ShipStats []ShipStats `gorm:"foreignKey:TypeID"`
+	ID           uint `gorm:"primaryKey;autoIncrement"`
+	Name         string
+	MaxCrew      uint
+	Hull         *float64
+	Sails        *float64
+	Guns         *float64
+	Speed        *float64
+	CannonAcc    *float64
+	CannonMinDmg *float64
+	CannonMaxDmg *float64
+	RldSpeed     *float64
+	HoldCap      *float64
+	Lesser       *float64
+	Regular      *float64
+	Greater      *float64
+	RepairCd     *float64
+	HullRp       *float64
+	SailRp       *float64
+	GunsRp       *float64
+	BoardChance  *float64
+	Doubloons    *float64
+	CrewHits     *float64
+	CrewBreach   *float64
+	CrewDamage   *float64
+	HealBonus    *float64
+	Fishing      *float64
+	Spy          *float64
+	Wake         *float64
 }
 
 //* significa que pode ser nulo no GORM
