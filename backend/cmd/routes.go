@@ -11,4 +11,6 @@ func setupRoutes(app *fiber.App) {
 	app.Get("/fact/:id", handlers.ShowFactById)
 	app.Post("/fact", handlers.CreateFact)
 	app.Delete("/fact/:id", handlers.DeleteFactById)
+	app.Get("/shiptypes", handlers.ListShipTypes)
+	app.Get("/shiptypes/:id", handlers.ShowShipTypeById)
 }
