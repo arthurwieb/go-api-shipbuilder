@@ -19,6 +19,7 @@ type Dbinstance struct {
 
 func Seed(db *gorm.DB) {
 	isTableEmpty(db, models.UpgradeType{}, database_data.GetUpgradeTypes())
+	isTableEmpty(db, models.ShipType{}, database_data.GetShipTypes())
 }
 
 func isTableEmpty(db *gorm.DB, model interface{}, data interface{}) {
