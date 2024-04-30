@@ -9,7 +9,7 @@ import (
 
 func ListFacts(c *fiber.Ctx) error {
 	facts := []models.Fact{}
-	database.DB.Db.Find(&facts)
+	database.DB.Find(&facts)
 
 	return c.Status(200).JSON(facts)
 }
@@ -17,7 +17,7 @@ func ListFacts(c *fiber.Ctx) error {
 func ShowFactById(c *fiber.Ctx) error {
 	id := c.Params("id")
 	fact := models.Fact{}
-	if err := database.DB.Db.Where("id = ?", id).First(&fact).Error; err != nil {
+	if err := database.DB.Where("id = ?", id).First(&fact).Error; err != nil {
 		return c.Status(404).SendString("Fact not found")
 	}
 	return c.Status(200).JSON(fact)
@@ -26,11 +26,11 @@ func ShowFactById(c *fiber.Ctx) error {
 func DeleteFactById(c *fiber.Ctx) error {
 	id := c.Params("id")
 	fact := models.Fact{}
-	if err := database.DB.Db.Where("id = ?", id).First(&fact).Error; err != nil {
+	if err := database.DB.Where("id = ?", id).First(&fact).Error; err != nil {
 		return c.Status(404).JSON("Fact not found")
 	}
 	// Delete the fact
-	if err := database.DB.Db.Delete(&fact).Error; err != nil {
+	if err := database.DB.Delete(&fact).Error; err != nil {
 		return c.Status(500).JSON("Failed to delete the fact")
 	}
 
@@ -45,6 +45,6 @@ func CreateFact(c *fiber.Ctx) error {
 		})
 	}
 
-	database.DB.Db.Create(&fact)
+	database.DB.Create(&fact)
 	return c.Status(200).JSON(fact)
 }

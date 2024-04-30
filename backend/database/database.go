@@ -13,10 +13,6 @@ import (
 	"gorm.io/gorm/logger"
 )
 
-type Dbinstance struct {
-	Db *gorm.DB
-}
-
 func Seed(db *gorm.DB) {
 	isTableEmpty(db, models.UpgradeType{}, database_data.GetUpgradeTypes())
 	isTableEmpty(db, models.ShipType{}, database_data.GetShipTypes())
@@ -30,7 +26,7 @@ func isTableEmpty(db *gorm.DB, model interface{}, data interface{}) {
 	}
 }
 
-var DB Dbinstance
+var DB *gorm.DB
 
 func ConnectDb() {
 	dsn := fmt.Sprintf(
@@ -39,8 +35,8 @@ func ConnectDb() {
 		os.Getenv("DB_PASSWORD"),
 		os.Getenv("DB_NAME"),
 	)
-
-	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{
+	var err error
+	DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{
 		Logger: logger.Default.LogMode(logger.Info),
 	})
 
@@ -50,18 +46,14 @@ func ConnectDb() {
 	}
 
 	log.Println("connected")
-	db.Logger = logger.Default.LogMode(logger.Info)
+	DB.Logger = logger.Default.LogMode(logger.Info)
 
 	log.Println("running migrations")
-	db.AutoMigrate(&models.Fact{})
-	db.AutoMigrate(&models.Upgrade{})
-	db.AutoMigrate(&models.UpgradeType{})
-	db.AutoMigrate(&models.ShipType{})
+	DB.AutoMigrate(&models.Fact{})
+	DB.AutoMigrate(&models.Upgrade{})
+	DB.AutoMigrate(&models.UpgradeType{})
+	DB.AutoMigrate(&models.ShipType{})
 	//db.AutoMigrate(&models.Ship{})
 	//db.AutoMigrate(&models.ShipStats{})
-	Seed(db)
-
-	DB = Dbinstance{
-		Db: db,
-	}
+	Seed(DB)
 }
