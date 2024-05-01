@@ -16,6 +16,7 @@ import (
 func Seed(db *gorm.DB) {
 	isTableEmpty(db, models.UpgradeType{}, database_data.GetUpgradeTypes())
 	isTableEmpty(db, models.ShipType{}, database_data.GetShipTypes())
+	isTableEmpty(db, models.UpgradeOutfitting{}, database_data.GetUpgradeOutfitting())
 }
 
 func isTableEmpty(db *gorm.DB, model interface{}, data interface{}) {
@@ -53,6 +54,7 @@ func ConnectDb() {
 	DB.AutoMigrate(&models.Upgrade{})
 	DB.AutoMigrate(&models.UpgradeType{})
 	DB.AutoMigrate(&models.ShipType{})
+	DB.AutoMigrate(&models.UpgradeOutfitting{})
 	//db.AutoMigrate(&models.Ship{})
 	//db.AutoMigrate(&models.ShipStats{})
 	Seed(DB)
