@@ -62,7 +62,7 @@ func GetUpgradeOutfitting() []*models.UpgradeOutfitting {
 			Hull:      f(10),
 			Sails:     f(20),
 			Speed:     f(2.5),
-			HolderCap: f(200),
+			HoldCap:   f(200),
 			Lesser:    f(10),
 			RepairCd:  f(5),
 			Doubloons: f(15),
