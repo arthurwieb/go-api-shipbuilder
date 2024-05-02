@@ -2,6 +2,8 @@ import "./shiptypes.scss"
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import DataTable from "../../components/dataTable/DataTable";
+import { shipColumns } from '../../data/gridData';
 
 interface ShipType {
   ID: number;
@@ -34,17 +36,13 @@ const ShipType: React.FC = () => {
   }
 
   return (
-    <div>
-      <h1>Ship types</h1>
-      <ul>
-        {shiptypes.map((shiptype) => (
-          <li key={shiptype.ID}>
-            <strong>{shiptype.Name}</strong>
-          </li>
-        ))}
-      </ul>
+    <div className="shiptypes">
+      <div className="info">
+        <h1>Ship Types</h1>
+      </div>
+      <DataTable slug="shiptypes" columns={shipColumns} rows={shiptypes} />
     </div>
-  );
+  )
 };
 
 export default ShipType;

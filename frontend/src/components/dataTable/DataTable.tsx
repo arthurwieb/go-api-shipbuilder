@@ -30,9 +30,7 @@ const DataTable = (props: Props) => {
   // // });
 
   const handleDelete = (id: number) => {
-    //delete the item
-    // mutation.mutate(id)
-    console.log(id + "has been deleted!")
+    console.log(id + " has been deleted!")
   };
 
   const actionColumn: GridColDef = {
@@ -42,10 +40,10 @@ const DataTable = (props: Props) => {
     renderCell: (params) => {
       return (
         <div className="action">
-          <Link to={`/${props.slug}/${params.row.id}`}>
+          <Link to={`/${props.slug}/${params.row.id || params.row.ID}`}>
             <img src="/view.svg" alt="" />
           </Link>
-          <div className="delete" onClick={() => handleDelete(params.row.id)}>
+          <div className="delete" onClick={() => handleDelete(params.row.id || params.row.ID)}>
             <img src="/delete.svg" alt="" />
           </div>
         </div>
@@ -59,6 +57,7 @@ const DataTable = (props: Props) => {
         className="dataGrid"
         rows={props.rows}
         columns={[...props.columns, actionColumn]}
+        getRowId={(row) => row.ID || row.id}
         initialState={{
           pagination: {
             paginationModel: {
