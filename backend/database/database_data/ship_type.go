@@ -8,6 +8,10 @@ func f(f float64) *float64 {
 	return &f
 }
 
+func i(i uint) *uint {
+	return &i
+}
+
 func GetShipTypes() []*models.ShipType {
 	shipTypesData := []*models.ShipType{
 		{

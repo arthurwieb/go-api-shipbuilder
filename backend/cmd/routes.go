@@ -9,17 +9,25 @@ import (
 
 func setupRoutes(app *fiber.App) {
 	app.Use(cors.New())
-	//facts
-	app.Get("/", handlers.ListFacts)
-	app.Get("/fact/:id", handlers.ShowFactById)
-	app.Post("/fact", handlers.CreateFact)
-	app.Delete("/fact/:id", handlers.DeleteFactById)
+	//ships
+	app.Get("/ships", handlers.ListShips)
+	app.Get("/ships/:id", handlers.ShowShipById)
+	app.Post("/ships", handlers.CreateShip)
+	app.Delete("/ships/:id", handlers.DeleteShipById)
 
 	//ship types
 	app.Get("/shiptypes", handlers.ListShipTypes)
 	app.Get("/shiptypes/:id", handlers.ShowShipTypeById)
 
 	// upgrade outfitting
-	app.Get("/upgradeoutfitting", handlers.ListUpgradesOutfitting)
-	app.Get("/upgradeoutfitting/:id", handlers.GetUpgradeOutfittingById)
+	app.Get("/upgrade/outfitting", handlers.ListUpgradesOutfitting)
+	app.Get("/upgrade/outfitting/:id", handlers.GetUpgradeOutfittingById)
+
+	// upgrade specialty
+	app.Get("/upgrade/specialty", handlers.ListUpgradesSpecialty)
+	app.Get("/upgrade/specialty/:id", handlers.GetUpgradeSpecialtyById)
+
+	// upgrade supplies
+	app.Get("/upgrade/supplies", handlers.ListUpgradesSupplies)
+	app.Get("/upgrade/supplies/:id", handlers.GetUpgradeSuppliesById)
 }

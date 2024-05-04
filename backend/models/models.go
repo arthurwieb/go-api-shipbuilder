@@ -1,13 +1,5 @@
 package models
 
-import "gorm.io/gorm"
-
-type Fact struct {
-	gorm.Model
-	Question string `json:"question" gorm:"text;not null;default:null`
-	Answer   string `json:"answer" gorm:"text;not null;default:null`
-}
-
 type UpgradeType struct {
 	ID   uint `gorm:"primaryKey;autoIncrement"`
 	Name string
@@ -15,7 +7,6 @@ type UpgradeType struct {
 
 type ShipType struct {
 	ID           uint `gorm:"primaryKey;autoIncrement"`
-	Ship         Ship
 	Name         string
 	MaxCrew      uint
 	Hull         *float64
@@ -46,9 +37,11 @@ type ShipType struct {
 }
 
 type Ship struct {
-	ID                  uint `gorm:"primaryKey;autoIncrement"`
-	ShipTypeID          uint `gorm:"foreignKey:ID"`
-	UpgradeOutfittingID uint `gorm:"foreignKey:ID"`
+	ID                  uint  `gorm:"primaryKey;autoIncrement"`
+	ShipTypeID          uint  `gorm:"foreignKey:ID"`
+	UpgradeOutfittingID *uint `gorm:"foreignKey:ID"`
+	UpgradeSuppliesID   *uint `gorm:"foreignKey:ID"`
+	UpgradeSpecialtyID  *uint `gorm:"foreignKey:ID"`
 	Name                string
 	HullBonus           *float64
 	SailsBonus          *float64
@@ -79,7 +72,62 @@ type Ship struct {
 
 type UpgradeOutfitting struct {
 	ID          uint `gorm:"primaryKey;autoIncrement"`
-	Ship        Ship
+	Name        string
+	Hull        *float64
+	Sails       *float64
+	Guns        *float64
+	CannonAcc   *float64
+	CannonDmg   *float64
+	RldSpeed    *float64
+	HoldCap     *float64
+	Lesser      *float64
+	Greater     *float64
+	RepairCd    *float64
+	BoardChance *float64
+	GunsRp      *float64
+	HullRp      *float64
+	SailRp      *float64
+	CrewHits    *float64
+	Speed       *float64
+	Doubloons   *float64
+	HealBonus   *float64
+	Fishing     *float64
+	Spy         *float64
+	Wake        *float64
+	Regular     *float64
+	CrewBreach  *float64
+	CrewDamage  *float64
+}
+type UpgradeSpecialty struct {
+	ID          uint `gorm:"primaryKey;autoIncrement"`
+	Name        string
+	Hull        *float64
+	Sails       *float64
+	Guns        *float64
+	CannonAcc   *float64
+	CannonDmg   *float64
+	RldSpeed    *float64
+	HoldCap     *float64
+	Lesser      *float64
+	Greater     *float64
+	RepairCd    *float64
+	BoardChance *float64
+	GunsRp      *float64
+	HullRp      *float64
+	SailRp      *float64
+	CrewHits    *float64
+	Speed       *float64
+	Doubloons   *float64
+	HealBonus   *float64
+	Fishing     *float64
+	Spy         *float64
+	Wake        *float64
+	Regular     *float64
+	CrewBreach  *float64
+	CrewDamage  *float64
+}
+type UpgradeSupplies struct {
+	ID          uint `gorm:"primaryKey;autoIncrement"`
 	Name        string
 	Hull        *float64
 	Sails       *float64

@@ -8,7 +8,9 @@ func GetMyShips() []*models.Ship {
 	myShipData := []*models.Ship{
 		{
 			ShipTypeID:          Large,
-			UpgradeOutfittingID: 1,
+			UpgradeOutfittingID: i(1),
+			UpgradeSuppliesID:   i(1),
+			UpgradeSpecialtyID:  i(1),
 			Name:                "NewJeans",
 			HullBonus:           f(9.5),
 			SailsBonus:          f(9.5),
