@@ -564,3 +564,121 @@ export const userColumns: GridColDef[] = [
     type: "boolean",
   },
 ];
+
+export const shipColumns: GridColDef[] = [
+  {
+    field: "id",
+    headerName: "ID",
+    width: 90,
+  },
+  {
+    field: "shipType",
+    type: "string",
+    headerName: "Ship type",
+    width: 150,
+  },
+  {
+    field: "maxCrew",
+    type: "number",
+    headerName: "Max Crew Size",
+    width: 150,
+  },
+  {
+    field: "holdCapacity",
+    type: "number",
+    headerName: "Hold Capacity",
+    width: 200,
+  },
+  {
+    field: "registCost",
+    type: "number",
+    headerName: "Resgistration Cost",
+    width: 200,
+  },
+  {
+    field: "upgradeCostMult",
+    type: "string",
+    headerName: "Upgrade Cost Multiplier",
+    width: 200
+  },
+  {
+    field: "totalValue",
+    type: "number",
+    headerName: "Total Value",
+    width: 200
+  },
+  {
+    field: "hullPoits",
+    type: "number",
+    headerName: "Hull Max Poits",
+    width: 200
+  },
+  {
+    field: "sailPoits",
+    type: "number",
+    headerName: "Sail Max Poits",
+    width: 200
+  },
+  {
+    field: "gunPoits",
+    type: "number",
+    headerName: "Gun Max Poits",
+    width: 200
+  },
+  {
+    field: "forwardSpeed",
+    type: "number",
+    headerName: "Forward Speed",
+    width: 200
+  },
+  {
+    field: "strafeSpeed",
+    type: "number",
+    headerName: "Strafe Speed",
+    width: 200
+  },
+  {
+    field: "reverseSpeed",
+    type: "number",
+    headerName: "Reverse Speed",
+    width: 200
+  },
+  {
+    field: "cannonsPerSide",
+    type: "number",
+    headerName: "Cannons Per Side",
+    width: 200
+  },
+  {
+    field: "cannonRange",
+    type: "number",
+    headerName: "Cannon Rage",
+    width: 200
+  },
+  {
+    field: "cannonAcc",
+    type: "number",
+    headerName: "Cannon Accuracy",
+    width: 200
+  },
+  {
+    field: "cannonMinDmg",
+    type: "number",
+    headerName: "Cannon Min Damage",
+    width: 200
+  },
+  {
+    field: "cannonMaxDmg",
+    type: "number",
+    headerName: "Cannon Max Damage",
+    width: 200
+  },
+  {
+    field: "cannonReloadTime",
+    type: "number",
+    headerName: "Cannon Reload Time",
+    width: 200
+  },
+
+  
+];

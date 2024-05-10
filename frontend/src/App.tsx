@@ -7,7 +7,7 @@ import { Home } from "./pages/home/Home";
 import "./styles/global.scss"
 import Navbar from "./components/navbar/Navbar";
 import Ship from "./pages/ships/Ship";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 const queryClient = new QueryClient();
 
