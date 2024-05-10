@@ -1,7 +1,7 @@
 
 import { GridColDef } from "@mui/x-data-grid";
 import "./add.scss"
-import axios from "axios";
+// import axios from "axios";
 
 type Props = {
     slug: string;

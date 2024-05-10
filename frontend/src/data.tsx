@@ -38,8 +38,8 @@ export const menu = [
       },
       {
         id: 3,
-        title: "Orders",
-        url: "/orders",
+        title: "My Ships",
+        url: "/ships",
         icon: "order.svg",
       },
       {
