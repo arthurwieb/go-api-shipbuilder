@@ -1,11 +1,15 @@
 import axios from "axios";
-import Ship from "../pages/ships/Ship";
+import { ShipModel } from "../models/shipModel";
 
-const URL = "'http://localhost:3000/";
+const URL = "http://localhost:3000/";
 
-async function getShips(): Promise<Ship[]> {
-  const response = await axios.get<Ship[]>(`${URL}ships`);
+async function getShips(): Promise<ShipModel[]> {
+  const response = await axios.get<ShipModel[]>(`${URL}ships`);
+  return response.data;
+}
 
+async function getShipTypes(): Promise<ShipModel[]> {
+  const response = await axios.get<ShipModel[]>(`${URL}shiptypes`);
   return response.data;
 }
 // async function updateUserName(userId: string, name: string): Promise<User> {
@@ -16,4 +20,5 @@ async function getShips(): Promise<Ship[]> {
 
 export const api = {
   getShips,
+  getShipTypes,
 };
