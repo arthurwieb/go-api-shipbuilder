@@ -68,6 +68,10 @@ type Ship struct {
 	FishingBonus        *float64
 	SpyBonus            *float64
 	WakeBonus           *float64
+	ShipType            ShipType
+	UpgradeOutfitting   UpgradeOutfitting
+	UpgradeSpecialty    UpgradeSpecialty
+	UpgradeSupplies     UpgradeSupplies
 }
 
 type UpgradeOutfitting struct {

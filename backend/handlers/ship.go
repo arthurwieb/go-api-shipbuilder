@@ -9,7 +9,7 @@ import (
 
 func ListShips(c *fiber.Ctx) error {
 	ships := []models.Ship{}
-	database.DB.Find(&ships)
+	database.DB.Preload("ShipType").Preload("UpgradeOutfitting").Preload("UpgradeSpecialty").Preload("UpgradeSupplies").Find(&ships)
 
 	return c.Status(200).JSON(ships)
 }
@@ -17,7 +17,7 @@ func ListShips(c *fiber.Ctx) error {
 func ShowShipById(c *fiber.Ctx) error {
 	id := c.Params("id")
 	ship := models.Ship{}
-	if err := database.DB.Where("id = ?", id).First(&ship).Error; err != nil {
+	if err := database.DB.Preload("ShipType").Preload("UpgradeOutfitting").Preload("UpgradeSpecialty").Preload("UpgradeSupplies").Where("id = ?", id).First(&ship).Error; err != nil {
 		return c.Status(404).SendString("Ship not found")
 	}
 	return c.Status(200).JSON(ship)
