@@ -1,7 +1,7 @@
 import axios from "axios";
 import { ShipModel } from "../models/shipModel";
 
-const URL = "http://localhost:3000/";
+export const URL = "http://localhost:3000/";
 
 async function getShips(): Promise<ShipModel[]> {
   const response = await axios.get<ShipModel[]>(`${URL}ships`);

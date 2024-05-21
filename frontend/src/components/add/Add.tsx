@@ -17,11 +17,13 @@ const Add = (props: Props) => {
 
     }
 
+    const capsTitle = props.slug[0].toLocaleUpperCase() + props.slug.slice(1);
+
     return (
         <div className="add">
             <div className="modal">
                 <span className="close" onClick={() => props.setOpen(false)}>X</span>
-                <h1>Add new {props.slug}</h1>
+                <h1>Add new {capsTitle}</h1>
                 <form onSubmit={handleSubmit}>
                     {props.columns
                         .filter(item => item.field !== "id" && item.field !== "img")
