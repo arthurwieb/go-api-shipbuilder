@@ -32,6 +32,13 @@ func CreateShip(c *fiber.Ctx) error {
 			"error":   err.Error(),
 		})
 	}
+
+	if ship.ShipTypeID == 0 || ship.Name == "" {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"message": "ShipTypeID and Name are required fields",
+		})
+	}
+
 	// Attempt to create the ship in the database
 	result := database.DB.Create(&ship)
 	if result.Error != nil {
