@@ -25,13 +25,22 @@ func ShowShipById(c *fiber.Ctx) error {
 
 func CreateShip(c *fiber.Ctx) error {
 	ship := new(models.Ship)
-	if err := database.DB.Create(&ship); err != nil {
-		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
-			"message": err,
+	// Parse the request body into the ship struct
+	if err := c.BodyParser(ship); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"message": "Error parsing request body",
+			"error":   err.Error(),
 		})
 	}
-	database.DB.Create(&ship)
-	return c.Status(200).JSON(ship)
+	// Attempt to create the ship in the database
+	result := database.DB.Create(&ship)
+	if result.Error != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"message": "Error creating ship",
+			"error":   result.Error.Error(),
+		})
+	}
+	return c.Status(fiber.StatusOK).JSON(ship)
 }
 
 func DeleteShipById(c *fiber.Ctx) error {
